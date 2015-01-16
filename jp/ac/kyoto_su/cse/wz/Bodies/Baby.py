@@ -10,7 +10,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
 from jp.ac.kyoto_su.cse.wz.MVC.Model import OpenGLModel
-from jp.ac.kyoto_su.cse.pl.Parts.Polygon import OpenGLPolygon
+from jp.ac.kyoto_su.cse.wz.Parts.Polygon import OpenGLPolygon
 
 TRACE = True
 DEBUG = False
