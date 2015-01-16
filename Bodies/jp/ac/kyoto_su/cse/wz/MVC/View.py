@@ -73,6 +73,8 @@ class OpenGLView(object):
 		far = projection.far()
 
 		aspect = float(self._width) / float(self._height)
+        near = 0.01
+        far = 100.0
 
 		glMatrixMode(GL_PROJECTION)
 		glLoadIdentity()
