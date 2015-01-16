@@ -3,7 +3,7 @@
 
 import sys
 
-import jp.ac.kyoto_su.cse.wz.Example as example
+import jp.ac.kyoto_su.cse.wz.Bodies.Example as example
 
 if __name__ == '__main__':
-		sys.exit(example.main())
+    sys.exit(example.main())
