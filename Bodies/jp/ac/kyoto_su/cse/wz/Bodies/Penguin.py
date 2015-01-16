@@ -9,6 +9,9 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
+from jp.ac.kyoto_su.cse.wz.MVC.Model import OpenGLModel
+from jp.ac.kyoto_su.cse.wz.Parts.Triangle import OpenGLTriangle
+
 TRACE = True
 DEBUG = False
 
