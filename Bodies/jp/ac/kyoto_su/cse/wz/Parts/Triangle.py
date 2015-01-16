@@ -1,3 +1,15 @@
+#! /usr/bin/env/ python
+#! -*- coding: utf-8 -*-
+
+from jp.ac.kyoto_su.cse.wz.Parts.Object import OpenGLObject
+
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
+
+TRACE = True
+DEBUG = False
+
 class OpenGLTriangle(OpenGLObject):
     """OpenGL三角形。"""
         

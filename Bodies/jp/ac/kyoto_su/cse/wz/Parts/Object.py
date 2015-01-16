@@ -1,3 +1,13 @@
+#! /usr/bin/env/ python
+#! -*- coding: utf-8 -*-
+
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
+
+TRACE = True
+DEBUG = False
+
 class OpenGLObject(object):
     """OpenGLオブジェクト。"""
         
