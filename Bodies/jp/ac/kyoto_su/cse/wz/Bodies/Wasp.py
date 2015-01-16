@@ -10,30 +10,31 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
 from jp.ac.kyoto_su.cse.wz.MVC.Model import OpenGLModel
+from jp.ac.kyoto_su.cse.wz.MVC.View import OpenGLView
 from jp.ac.kyoto_su.cse.wz.Parts.Polygon import OpenGLPolygon
 
 TRACE = True
 DEBUG = False
 
-class PenguinModel(OpenGLModel):
-	"""ペンギンのモデル。"""
+class WaspModel(OpenGLModel):
+	"""スズメバチのモデル。"""
 
 	def __init__(self):
-		"""ペンギンのモデルのコンストラクタ。"""
+		"""スズメバチのモデルのコンストラクタ。"""
 		if TRACE: print __name__, self.__init__.__doc__
 
-		super(PenguinModel, self).__init__()
-		self._projection.eye_point_([-6.6153435525924 , 3.5413918991617 , 27.440373330962])
-		self._projection.sight_point_([0.070155 , 0.108575 , 0.056235])
-		self._projection.up_vector_([0.03950581341181 , 0.99260439594225 , -0.11478590446043])
-		self._projection.fovy_(13.527497808711)
-		self._axes_scale = 2.0
+		super(WaspModel, self).__init__()
+		self._projection.eye_point_([-5.5852450791872 , 3.07847342734 , 15.794105252496])
+		self._projection.sight_point_([0.19825005531311 , 1.8530999422073 , -0.63795006275177])
+		self._projection.up_vector_([0.070077999093727 , 0.99630606032682 , -0.049631725731267])
+		self._projection.fovy_(41.480099231656)
+		self._axes_scale = 4.0
 
-		filename = os.path.join(os.getcwd(), 'penguin.txt')
+		filename = os.path.join(os.getcwd(), 'wasp.txt')
 		if os.path.exists(filename) and os.path.isfile(filename):
 			pass
 		else:
-			url = 'http://www.cc.kyoto-su.ac.jp/~atsushi/Programs/Penguin/penguin.txt'
+			url = 'http://www.cc.kyoto-su.ac.jp/~atsushi/Programs/Wasp/wasp.txt'
 			urllib.urlretrieve(url, filename)
 
 		with open(filename, "rU") as a_file:
@@ -61,18 +62,9 @@ class PenguinModel(OpenGLModel):
 						index = number_of_indexes + 1
 						indexes = map(int, a_list[1:index])
 						vertexes = map(index_to_vertex, indexes)
+						rgb_color = map(float, a_list[index:index+3])
 						a_polygon = OpenGLPolygon(vertexes)
-						self._display_object.append(a_polygon)
-					for n_th in range(number_of_polygons):
-						a_list = get_tokens(a_file)
-						rgb_color = map(float, a_list[0:3])
-						a_polygon = self._display_object[n_th]
 						a_polygon.rgb(*rgb_color)
+						self._display_object.append(a_polygon)
 
 		return
-
-	def default_window_title(self):
-		"""ペンギンのウィンドウのタイトル(ラベル)を応答する。"""
-		if TRACE: print __name__, self.default_window_title.__doc__
-
-		return "Penguin"

@@ -15,25 +15,25 @@ from jp.ac.kyoto_su.cse.wz.Parts.Polygon import OpenGLPolygon
 TRACE = True
 DEBUG = False
 
-class PenguinModel(OpenGLModel):
-	"""ペンギンのモデル。"""
+class BabyModel(OpenGLModel):
+	"""赤ちゃんのモデル。"""
 
 	def __init__(self):
-		"""ペンギンのモデルのコンストラクタ。"""
+		"""赤ちゃんのモデルのコンストラクタ。"""
 		if TRACE: print __name__, self.__init__.__doc__
 
-		super(PenguinModel, self).__init__()
+		super(BabyModel, self).__init__()
 		self._projection.eye_point_([-6.6153435525924 , 3.5413918991617 , 27.440373330962])
-		self._projection.sight_point_([0.070155 , 0.108575 , 0.056235])
-		self._projection.up_vector_([0.03950581341181 , 0.99260439594225 , -0.11478590446043])
-		self._projection.fovy_(13.527497808711)
-		self._axes_scale = 2.0
+		self._projection.sight_point_([0.0 , 0.14168989658356 , 0.18842494487762])
+		self._projection.up_vector_([0.039485481935453 , 0.99266691863474 , -0.11425097533293])
+		self._projection.fovy_(13.079457895221)
+		self._axes_scale = 1.8
 
-		filename = os.path.join(os.getcwd(), 'penguin.txt')
+		filename = os.path.join(os.getcwd(), 'baby.txt')
 		if os.path.exists(filename) and os.path.isfile(filename):
 			pass
 		else:
-			url = 'http://www.cc.kyoto-su.ac.jp/~atsushi/Programs/Penguin/penguin.txt'
+			url = 'http://www.cc.kyoto-su.ac.jp/~atsushi/Programs/Baby/baby.txt'
 			urllib.urlretrieve(url, filename)
 
 		with open(filename, "rU") as a_file:
@@ -47,6 +47,8 @@ class PenguinModel(OpenGLModel):
 					number_of_vertexes = int(a_list[1])
 				if first_string == "number_of_polygons":
 					number_of_polygons = int(a_list[1])
+				if first_string == "number_of_colors":
+					number_of_colors = int(a_list[1])
 				if first_string == "end_header":
 					get_tokens = (lambda file: file.readline().split())
 					collection_of_vertexes = []
@@ -63,16 +65,23 @@ class PenguinModel(OpenGLModel):
 						vertexes = map(index_to_vertex, indexes)
 						a_polygon = OpenGLPolygon(vertexes)
 						self._display_object.append(a_polygon)
-					for n_th in range(number_of_polygons):
+					collection_of_colors = []
+					for n_th in range(number_of_colors):
 						a_list = get_tokens(a_file)
 						rgb_color = map(float, a_list[0:3])
+						collection_of_colors.append(rgb_color)
+					for n_th in range(number_of_polygons):
+						a_list = get_tokens(a_file)
+						index = int(a_list[0])
+						rgb_color = collection_of_colors[index-1]
 						a_polygon = self._display_object[n_th]
 						a_polygon.rgb(*rgb_color)
 
 		return
 
 	def default_window_title(self):
-		"""ペンギンのウィンドウのタイトル(ラベル)を応答する。"""
+		"""赤ちゃんのウィンドウのタイトル(ラベル)を応答する。"""
 		if TRACE: print __name__, self.default_window_title.__doc__
 
-		return "Penguin"
+		return "Baby"
+
