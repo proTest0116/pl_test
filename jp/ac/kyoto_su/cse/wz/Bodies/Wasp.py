@@ -66,5 +66,11 @@ class WaspModel(OpenGLModel):
 						a_polygon = OpenGLPolygon(vertexes)
 						a_polygon.rgb(*rgb_color)
 						self._display_object.append(a_polygon)
-
+        
 		return
+
+	def default_window_title(self):
+		"""スズメバチのウィンドウのタイトル(ラベル)を応答する。"""
+		if TRACE: print __name__, self.default_window_title.__doc__
+
+		return "Wasp"
